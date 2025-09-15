@@ -40,6 +40,88 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // Dynamic Stripe Link Configuration for Credit Card Payment Button
+    function setupDynamicStripeLink() {
+        try {
+            // Define Stripe links
+            const earlyBirdLink = "https://buy.stripe.com/5kQ28sbL41NW8sR5cjdQQ08";
+            const regularLink = "https://buy.stripe.com/5kQ5kE9CWdwEbF3cELdQQ07";
+
+            // Find the "Pay with Credit Card" button
+            const creditCardButton = document.querySelector('.payment-card.alternative .btn');
+            if (!creditCardButton) {
+                console.error("Credit card payment button not found. Expected element with selector '.payment-card.alternative .btn'");
+                return;
+            }
+
+            // Find the early bird deadline element
+            const deadlineElement = document.querySelector('.early-bird-notice');
+            if (!deadlineElement) {
+                console.error("Early bird deadline element not found. Expected element with class '.early-bird-notice'");
+                return;
+            }
+
+            // Extract deadline text and parse date
+            const deadlineText = deadlineElement.textContent || deadlineElement.innerText;
+            console.log("Deadline text found:", deadlineText);
+
+            // Extract the date from text like "Early bird pricing ends September 19th!"
+            const dateMatch = deadlineText.match(/([A-Za-z]+)\s+(\d{1,2})(st|nd|rd|th)/);
+            if (!dateMatch) {
+                console.error("Could not parse deadline date from text:", deadlineText);
+                return;
+            }
+
+            const monthName = dateMatch[1];
+            const day = parseInt(dateMatch[2]);
+            const currentYear = 2025; // As specified in requirements
+
+            // Create deadline date object (end of day)
+            const deadlineDate = new Date(currentYear, getMonthNumber(monthName), day, 23, 59, 59, 999);
+            
+            if (isNaN(deadlineDate.getTime())) {
+                console.error("Invalid deadline date created from:", monthName, day, currentYear);
+                return;
+            }
+
+            // Get current date
+            const today = new Date();
+            
+            // Determine which link to use
+            const isEarlyBird = today <= deadlineDate;
+            const linkToUse = isEarlyBird ? earlyBirdLink : regularLink;
+            
+            console.log("Today:", today.toDateString());
+            console.log("Deadline:", deadlineDate.toDateString());
+            console.log("Is early bird period:", isEarlyBird);
+            console.log("Using link:", linkToUse);
+
+            // Set the href attribute
+            creditCardButton.href = linkToUse;
+
+            // Update the click handler to open the link
+            creditCardButton.addEventListener("click", function(e) {
+                e.preventDefault();
+                window.open(linkToUse, "_blank");
+            });
+
+        } catch (error) {
+            console.error("Error setting up dynamic Stripe link:", error);
+        }
+    }
+
+    // Helper function to convert month name to number
+    function getMonthNumber(monthName) {
+        const months = {
+            'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+            'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11
+        };
+        return months[monthName.toLowerCase()];
+    }
+
+    // Initialize dynamic Stripe link setup
+    setupDynamicStripeLink();
+
     // Toggle pricing section visibility
     window.showPricing = function() {
         const pricingAndPaymentSection = document.getElementById("pricing-and-payment-section");
@@ -570,4 +652,3 @@ document.addEventListener('DOMContentLoaded', function() {
         new LightboxGallery();
     }, 500);
 });
-
