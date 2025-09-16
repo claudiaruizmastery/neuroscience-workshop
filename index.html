@@ -146,7 +146,7 @@
                         <blockquote>
                             "I'd like to acknowledge our superb and brilliant brain-science team (including) Claudia Ruiz... I want to thank you for your excellent work, your ability to give and to serve with such vital energy, your passion to make a difference in the world, and your open minds and hearts."
                         </blockquote>
-                      &mdash; <cite><em>Becoming Supernatural: How Common People Are Doing the Uncommon</em> &ndash; A Wall Street Journal Bestseller by best-selling author Dr. Joe Dispenza</cite>
+                      &mdash; <cite><em>Becoming Supernatural: How Common People Are Doing the Uncommon</em> – A Wall Street Journal Bestseller by best-selling author Dr. Joe Dispenza</cite>
                     </div>
                 </div>
             </div>
@@ -290,15 +290,15 @@
                 <div class="workshop-description">
                     <h3>2-Day Immersive Online Training + 4 Follow-Up Sessions</h3>
                     <p>This comprehensive program includes:</p>
-                    <ul class="workshop-features">
-                        <li>✓ 6-week plan to integrate the training back into your life</li>
-                        <li>✓ Pre-training individual call (30 to 60 minutes)</li>
-                        <li>✓ 16-hour workshop</li>
-                        <li>✓ Unlimited group questions during the 6 weeks via Telegram chat</li>
-                        <li>✓ 4 group follow-up calls via Zoom (within the next 6 weeks)</li>
-                        <li>✓ 1 workbook + 1 "30-day journal"</li>
-                        <li>✓ All of Dr. Joe's audio lectures to study + meditation</li>
-                    </ul>
+                    <div class="included-list">
+                      <p>✓ 6-week plan to integrate the training back into your life</p>
+                      <p>✓ Pre-training individual call (30 to 60 minutes)</p>
+                      <p>✓ 16-hour workshop</p>
+                      <p>✓ Unlimited group questions during the 6 weeks via Telegram chat</p>
+                      <p>✓ 4 group follow-up calls via Zoom (within the next 6 weeks)</p>
+                      <p>✓ 1 workbook + 1 "30-day journal"</p>
+                      <p>✓ All of Dr. Joe's audio lectures to study + meditation</p>
+                    </div>
                 </div>
                 
                 <div class="dates-section">
@@ -325,7 +325,7 @@
             
             
             <div class="registration-actions">
-                <button class="btn btn-primary btn-large" onclick="showPricing()">View Pricing & Register</button>
+                <button class="btn btn-primary btn-large" id="view-pricing-btn">View Pricing & Register</button>
             </div>
 
             <div class="pricing-and-payment-section" id="pricing-and-payment-section" style="display: none;">
@@ -343,9 +343,6 @@
                             <p>Available up to a month before the training</p>
                         </div>
                     </div>
-                    <p class="note">Group Discounts and Early Bird Pricing are available until a month before the training.</p>
-                    <p class="note">Note: The price does not include Eventbrite or credit card fees. Zelle does not charge any fees.</p>
-                    <p class="note">Zelle Payment: (561) 706-5168</p>
                     
                     <div class="group-pricing-table" id="group-pricing-table" style="display: none;">
                         <h4>Group Pricing Details</h4>
@@ -413,20 +410,25 @@
 
                 <div class="whats-included-section">
                     <h2>What's Included in the Open Training Online</h2>
-                    <ul class="included-list">
-                        <li>✓ 6-week plan to integrate the training back into your life</li>
-                        <li>✓ Pre-training individual call (30 to 60 minutes)</li>
-                        <li>✓ 16-hour workshop</li>
-                        <li>✓ Unlimited group questions during the 6 weeks via Telegram chat</li>
-                        <li>✓ 4 group follow-up calls via Zoom (within the next 6 weeks)</li>
-                        <li>✓ 1 workbook + 1 "30-day journal"</li>
-                        <li>✓ All of Dr. Joe's audio lectures to study + meditation</li>
+                    <div class="included-list">
+                      <p>✓ 6-week plan to integrate the training back into your life</p>
+                      <p>✓ Pre-training individual call (30 to 60 minutes)</p>
+                      <p>✓ 16-hour workshop</p>
+                      <p>✓ Unlimited group questions during the 6 weeks via Telegram chat</p>
+                      <p>✓ 4 group follow-up calls via Zoom (within the next 6 weeks)</p>
+                      <p>✓ 1 workbook + 1 "30-day journal"</p>
+                      <p>✓ All of Dr. Joe's audio lectures to study + meditation</p>
+                    </div>
+                    <br>
+                    <p class="workbook-note" style="color: #7C3AED; font-weight: bold; font-style: italic;">We are excited to be using the newly updated workbook and journal, which reflect the latest advancements in Dr. Joe's work. This updated version provides an even more profound experience for participants, ensuring the most transformative journey possible.</p>
+                    <br>
+                    <ul class="note-list">
+                      <li><a href="#" id="toggle-group-discounts">Group Discounts</a> and Early Bird Pricing are available until a month before the training. **For group discount, one payment as a group. All materials sent to one location **</li>
+                      <li>Note: The price does not include Eventbrite or credit card fees. Zelle does not charge any fees.</li>
+                      <li>Zelle Payment: (561) 706-5168</li>
                     </ul>
-                    <p class="workbook-note">
-                        We are excited to be using the newly updated workbook and journal, which reflect the latest advancements in Dr. Joe's work. This updated version provides an even more profound experience for participants, ensuring the most transformative journey possible.
-                    </p>
                 </div>
-                <div class="image-container" style="text-align: center; margin-top: 20px;">
+                <div class="image-container" id="group-discount-image-container" style="text-align: center; margin-top: 20px; display: none;">
                     <img src="Group Discounts Table.jpg" alt="Group Discounts Table" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
                 </div>
             </div>
@@ -441,8 +443,8 @@
                 <p><strong>⚡ Limited spots available!</strong> Secure your place in the next workshop.</p>
             </div>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary btn-xl" id="signup-btn-final">Register Now</a>
                 <a href="#" class="btn btn-secondary btn-xl" id="schedule-btn-final">Schedule Free Consultation</a>
+                <a href="#" class="btn btn-primary btn-xl" id="signup-btn-final">Register Now</a>
             </div>
         </div>
     </section>
@@ -453,7 +455,7 @@
                 <div class="footer-section">
                     <h4>Contact Information</h4>
                     <p class="contact-info">
-                        <strong>Email:</strong> <a href="mailto:claudiaR@neurochangesolutions.com">claudiaR@neurochangesolutions.com</a><br>
+                        <strong>Email:</strong> <a href="mailto:ClaudiaR@neurochangesolutions.com">ClaudiaR@neurochangesolutions.com</a><br>
                         <strong>Phone:</strong> <a href="tel:+15617065168">+1 561 706 5168</a>
                     </p>
                 </div>
@@ -462,16 +464,9 @@
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/claudiaruiz1/" target="_blank">LinkedIn</a>
                         <a href="https://www.facebook.com/claudia.ruiz" target="_blank">Facebook</a>
-                        <a href="https://twitter.com/ClauruizC" target="_blank">Twitter</a>
+                        <a href="https://www.instagram.com/clauruizc/" target="_blank">Instagram</a>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 NeuroChangeSolutions. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -479,4 +474,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

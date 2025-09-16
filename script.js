@@ -16,6 +16,54 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // Function to toggle pricing section visibility
+    function showPricing() {
+        const pricingAndPaymentSection = document.getElementById("pricing-and-payment-section");
+        
+        if (pricingAndPaymentSection.style.display === "none" || pricingAndPaymentSection.style.display === "") {
+            pricingAndPaymentSection.style.display = "block";
+            pricingAndPaymentSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        } else {
+            pricingAndPaymentSection.style.display = "none";
+        }
+    }
+    
+    // Bind the "View Pricing & Register" button to the showPricing function
+    const viewPricingBtn = document.getElementById("view-pricing-btn");
+    if (viewPricingBtn) {
+        viewPricingBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            showPricing();
+        });
+    }
+    
+    // Function to toggle group discounts visibility
+    function toggleGroupDiscounts() {
+        const groupPricingTable = document.getElementById("group-pricing-table");
+        const groupDiscountImageContainer = document.getElementById("group-discount-image-container");
+        
+        if (groupPricingTable.style.display === "none" || groupPricingTable.style.display === "") {
+            groupPricingTable.style.display = "block";
+            groupDiscountImageContainer.style.display = "block";
+        } else {
+            groupPricingTable.style.display = "none";
+            groupDiscountImageContainer.style.display = "none";
+        }
+    }
+
+    // Bind the "Group Discounts" hyperlink to the toggleGroupDiscounts function
+    const toggleGroupDiscountsLink = document.getElementById("toggle-group-discounts");
+    if (toggleGroupDiscountsLink) {
+        toggleGroupDiscountsLink.addEventListener("click", function(e) {
+            e.preventDefault();
+            toggleGroupDiscounts();
+        });
+    }
+
+
     // Button click handlers (placeholder for actual links)
     const signupButtons = document.querySelectorAll("[id^=\"signup-btn\"]");
     const scheduleButtons = document.querySelectorAll("[id^=\"schedule-btn\"]");
@@ -23,20 +71,23 @@ document.addEventListener("DOMContentLoaded", function() {
     signupButtons.forEach(button => {
         button.addEventListener("click", function(e) {
             e.preventDefault();
-            // Placeholder for Stripe payment link
-            alert("Stripe payment link will be integrated here.\n\nThis button will redirect to the workshop registration payment page.");
-            // In production, replace with:
-            // window.open("YOUR_STRIPE_PAYMENT_LINK", "_blank");
+            // For signup-btn-final (Register Now), perform same action as View Pricing & Register
+            if (button.id === 'signup-btn-final') {
+                showPricing();
+            } else {
+                // Placeholder for Stripe payment link for other signup buttons
+                alert("Stripe payment link will be integrated here.\n\nThis button will redirect to the workshop registration payment page.");
+                // In production, replace with:
+                // window.open("YOUR_STRIPE_PAYMENT_LINK", "_blank");
+            }
         });
     });
 
     scheduleButtons.forEach(button => {
         button.addEventListener("click", function(e) {
             e.preventDefault();
-            // Placeholder for Calendly link
-            alert("Calendly scheduling link will be integrated here.\n\nThis button will open the consultation scheduling calendar.");
-            // In production, replace with:
-            // window.open("YOUR_CALENDLY_LINK", "_blank");
+            // Calendly link
+            window.open("https://calendly.com/claudiaruiz-mastery/new-meeting", "_blank");
         });
     });
 
@@ -121,31 +172,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialize dynamic Stripe link setup
     setupDynamicStripeLink();
-
-    // Toggle pricing section visibility
-    window.showPricing = function() {
-        const pricingAndPaymentSection = document.getElementById("pricing-and-payment-section");
-        
-        if (pricingAndPaymentSection.style.display === "none" || pricingAndPaymentSection.style.display === "") {
-            pricingAndPaymentSection.style.display = "block";
-            pricingAndPaymentSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        } else {
-            pricingAndPaymentSection.style.display = "none";
-        }
-    };
-
-    // Toggle group pricing table visibility
-    window.toggleGroupPricing = function() {
-        const groupPricingTable = document.getElementById("group-pricing-table");
-        if (groupPricingTable.style.display === "none" || groupPricingTable.style.display === "") {
-            groupPricingTable.style.display = "block";
-        } else {
-            groupPricingTable.style.display = "none";
-        }
-    };
 
     // Intersection Observer for animations
     const observerOptions = {
