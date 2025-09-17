@@ -284,74 +284,293 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Gallery image modal (enhanced for multiple images)
+    // Gallery image modal with carousel functionality
     const galleryItems = document.querySelectorAll(".gallery-item");
-    galleryItems.forEach(item => {
-        item.addEventListener("click", function() {
-            const modal = document.createElement("div");
-            modal.classList.add("gallery-modal");
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 2000;
-                cursor: pointer;
-                flex-direction: column;
-                padding: 20px;
-                box-sizing: border-box;
-            `;
-            
-            const modalContent = document.createElement("div");
-            modalContent.style.cssText = `
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-                max-width: 90%;
-                max-height: 90%;
-                overflow-y: auto;
-                background-color: white;
-                padding: 20px;
-                border-radius: 10px;
-            `;
-
-            // For demonstration, let's assume each gallery item has a set of related images.
-            // In a real scenario, you would fetch these images based on the clicked item.
-            const imagesToShow = [
-                this.querySelector("img").src, // The clicked image
-                // Add more related images here if available
-                // "path/to/related-image-1.jpg",
-                // "path/to/related-image-2.jpg"
-            ];
-
-            imagesToShow.forEach(src => {
-                const img = document.createElement("img");
-                img.src = src;
-                img.style.cssText = `
-                    max-width: 100%;
-                    height: auto;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                `;
-                modalContent.appendChild(img);
-            });
-            
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-            
-            modal.addEventListener("click", function(e) {
-                if (e.target === modal) { // Only close if clicking outside the content
-                    document.body.removeChild(modal);
-                }
+    galleryItems.forEach((item, galleryIndex) => {
+        const galleryImages = item.querySelectorAll(".carousel-slide img");
+        
+        galleryImages.forEach((img, imageIndex) => {
+            img.addEventListener("click", function(e) {
+                e.stopPropagation();
+                openGalleryModal(galleryIndex, imageIndex);
             });
         });
     });
+
+    function openGalleryModal(galleryIndex, startImageIndex) {
+        const galleryItem = document.querySelectorAll(".gallery-item")[galleryIndex];
+        const images = galleryItem.querySelectorAll(".carousel-slide img");
+        let currentImageIndex = startImageIndex;
+
+        // Create modal
+        const modal = document.createElement("div");
+        modal.classList.add("gallery-modal");
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+        `;
+
+        // Create modal content container
+        const modalContent = document.createElement("div");
+        modalContent.style.cssText = `
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        // Create image container
+        const imageContainer = document.createElement("div");
+        imageContainer.style.cssText = `
+            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        // Create main image
+        const modalImage = document.createElement("img");
+        modalImage.style.cssText = `
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        `;
+
+        // Create navigation arrows
+        const prevArrow = document.createElement("button");
+        prevArrow.innerHTML = "‹";
+        prevArrow.style.cssText = `
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        const nextArrow = document.createElement("button");
+        nextArrow.innerHTML = "›";
+        nextArrow.style.cssText = `
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        // Create image counter
+        const imageCounter = document.createElement("div");
+        imageCounter.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+        `;
+
+        // Create close button
+        const closeButton = document.createElement("button");
+        closeButton.innerHTML = "×";
+        closeButton.style.cssText = `
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        // Function to update modal image
+        function updateModalImage() {
+            modalImage.src = images[currentImageIndex].src;
+            modalImage.alt = images[currentImageIndex].alt;
+            imageCounter.textContent = `Image ${currentImageIndex + 1} of ${images.length}`;
+            
+            // Add visual indication of more images with subtle shadow effects
+            if (images.length > 1) {
+                if (currentImageIndex > 0) {
+                    modalImage.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.5), -20px 0 40px rgba(255, 255, 255, 0.1)";
+                } else if (currentImageIndex < images.length - 1) {
+                    modalImage.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.5), 20px 0 40px rgba(255, 255, 255, 0.1)";
+                } else {
+                    modalImage.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.5)";
+                }
+            }
+        }
+
+        // Navigation functions
+        function goToPrevious() {
+            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : images.length - 1;
+            updateModalImage();
+        }
+
+        function goToNext() {
+            currentImageIndex = currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0;
+            updateModalImage();
+        }
+
+        // Event listeners
+        prevArrow.addEventListener("click", goToPrevious);
+        nextArrow.addEventListener("click", goToNext);
+        
+        closeButton.addEventListener("click", function() {
+            document.body.removeChild(modal);
+        });
+
+        // Close modal when clicking outside image
+        modal.addEventListener("click", function(e) {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+
+        // Hover effects for arrows and close button
+        [prevArrow, nextArrow, closeButton].forEach(button => {
+            button.addEventListener("mouseenter", function() {
+                this.style.backgroundColor = "rgba(255, 255, 255, 1)";
+                this.style.transform = this === closeButton ? "scale(1.1)" : "translateY(-50%) scale(1.1)";
+            });
+            
+            button.addEventListener("mouseleave", function() {
+                this.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+                this.style.transform = this === closeButton ? "scale(1)" : "translateY(-50%) scale(1)";
+            });
+        });
+
+        // Assemble modal
+        imageContainer.appendChild(modalImage);
+        modalContent.appendChild(imageContainer);
+        modal.appendChild(modalContent);
+        modal.appendChild(prevArrow);
+        modal.appendChild(nextArrow);
+        modal.appendChild(imageCounter);
+        modal.appendChild(closeButton);
+        
+        document.body.appendChild(modal);
+        
+        // Initialize with current image
+        updateModalImage();
+
+        // Add keyboard navigation
+        function handleKeyPress(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    goToPrevious();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    goToNext();
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    document.body.removeChild(modal);
+                    break;
+            }
+        }
+
+        document.addEventListener("keydown", handleKeyPress);
+        
+        // Remove keyboard listener when modal is closed
+        const originalRemoveChild = modal.remove || function() { this.parentNode.removeChild(this); };
+        modal.remove = function() {
+            document.removeEventListener("keydown", handleKeyPress);
+            originalRemoveChild.call(this);
+        };
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
+        modal.addEventListener("touchstart", function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        modal.addEventListener("touchend", function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            const minSwipeDistance = 50;
+            
+            // Only process horizontal swipes (ignore vertical scrolling)
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+                if (deltaX > 0) {
+                    // Swipe right - go to previous image
+                    goToPrevious();
+                } else {
+                    // Swipe left - go to next image
+                    goToNext();
+                }
+            }
+        });
+    }
 
     // Console log for debugging
     console.log("Neuroscience Workshop Landing Page loaded successfully!");
