@@ -880,7 +880,31 @@ html {
         font-size: 2rem;
     }
     .hero-section {
-        height: 60vh;
+        height: auto;
+        min-height: 65vh;
+        padding: 1.5rem 0;
+    }
+    .main-title {
+        font-size: 2.8rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+    .hero-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+    .hero-content {
+        padding: 1.5rem;
+    }
+    .brand-name {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
     }
     .btn-large {
         padding: 14px 28px;
@@ -930,10 +954,31 @@ html {
         font-size: 1.8rem;
     }
     .hero-section {
-        height: 50vh;
+        height: auto;
+        min-height: 60vh;
+        padding: 2rem 0;
+    }
+    .main-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
     }
     .hero-description {
         font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+    }
+    .hero-content {
+        padding: 1rem;
+    }
+    .brand-name {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
     }
     .btn {
         padding: 12px 24px;
@@ -958,5 +1003,36 @@ html {
     }
     .urgency-message p {
         font-size: 1.1rem;
+    }
+}
+
+/* Mobile Claudia Image */
+.mobile-claudia-image {
+    display: none;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.claudia-mobile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Show Claudia image only on mobile devices */
+@media (max-width: 768px) {
+    .mobile-claudia-image {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .claudia-mobile-img {
+        width: 100px;
+        height: 100px;
+        border: 2px solid rgba(255, 255, 255, 0.8);
     }
 }
