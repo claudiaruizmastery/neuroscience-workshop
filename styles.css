@@ -1374,3 +1374,51 @@ html {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), -20px 0 40px rgba(255, 255, 255, 0.1), 20px 0 40px rgba(255, 255, 255, 0.1);
 }
 
+
+/* Modal Image Subtitle */
+.gallery-modal .modal-subtitle {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    z-index: 2001;
+    backdrop-filter: blur(10px);
+    max-width: 80%;
+    text-align: center;
+    line-height: 1.4;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Responsive Modal Subtitle */
+@media (max-width: 768px) {
+    .gallery-modal .modal-subtitle {
+        bottom: 70px;
+        font-size: 14px;
+        padding: 10px 20px;
+        max-width: 85%;
+    }
+    
+    .gallery-modal .modal-counter {
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-modal .modal-subtitle {
+        bottom: 60px;
+        font-size: 12px;
+        padding: 8px 16px;
+        max-width: 90%;
+    }
+    
+    .gallery-modal .modal-counter {
+        bottom: 15px;
+    }
+}
+

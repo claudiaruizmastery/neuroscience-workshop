@@ -1,13 +1,13 @@
 // Landing Page JavaScript for Neuroscience Workshop
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Smooth scrolling for anchor links
-    const links = document.querySelectorAll("a[href^=\"#\"]");
+    // Smooth scrolling for anchor links (excluding buttons and special links)
+    const links = document.querySelectorAll("a[href^=\"#\"]:not(.btn):not(#toggle-group-discounts)");
     links.forEach(link => {
         link.addEventListener("click", function(e) {
-            e.preventDefault();
             const target = document.querySelector(this.getAttribute("href"));
             if (target) {
+                e.preventDefault();
                 target.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
@@ -40,16 +40,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-    // Function to toggle group discounts visibility
+    // Function to toggle group discounts image only (no table)
     function toggleGroupDiscounts() {
-        const groupPricingTable = document.getElementById("group-pricing-table");
         const groupDiscountImageContainer = document.getElementById("group-discount-image-container");
         
-        if (groupPricingTable.style.display === "none" || groupPricingTable.style.display === "") {
-            groupPricingTable.style.display = "block";
+        if (groupDiscountImageContainer.style.display === "none" || groupDiscountImageContainer.style.display === "") {
             groupDiscountImageContainer.style.display = "block";
         } else {
-            groupPricingTable.style.display = "none";
             groupDiscountImageContainer.style.display = "none";
         }
     }
@@ -71,9 +68,15 @@ document.addEventListener("DOMContentLoaded", function() {
     signupButtons.forEach(button => {
         button.addEventListener("click", function(e) {
             e.preventDefault();
-            // For signup-btn-final (Register Now), perform same action as View Pricing & Register
+            // For signup-btn-final (Register Now), ensure pricing section is visible and scroll to it
             if (button.id === 'signup-btn-final') {
-                showPricing();
+                const pricingAndPaymentSection = document.getElementById("pricing-and-payment-section");
+                // Always show the pricing section (don't toggle)
+                pricingAndPaymentSection.style.display = "block";
+                pricingAndPaymentSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
             } else {
                 // Placeholder for Stripe payment link for other signup buttons
                 alert("Stripe payment link will be integrated here.\n\nThis button will redirect to the workshop registration payment page.");
@@ -401,13 +404,33 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
         `;
 
+        // Create image subtitle
+        const imageSubtitle = document.createElement("div");
+        imageSubtitle.style.cssText = `
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 400;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+            max-width: 80%;
+            text-align: center;
+            line-height: 1.4;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        `;
+
         // Create image counter
         const imageCounter = document.createElement("div");
         imageCounter.style.cssText = `
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 30px;
+            right: 80px;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 10px 20px;
@@ -447,6 +470,7 @@ document.addEventListener("DOMContentLoaded", function() {
             modalImage.src = images[currentImageIndex].src;
             modalImage.alt = images[currentImageIndex].alt;
             imageCounter.textContent = `Image ${currentImageIndex + 1} of ${images.length}`;
+            imageSubtitle.textContent = images[currentImageIndex].alt || 'Image';
             
             // Add visual indication of more images with subtle shadow effects
             if (images.length > 1) {
@@ -505,6 +529,7 @@ document.addEventListener("DOMContentLoaded", function() {
         modal.appendChild(modalContent);
         modal.appendChild(prevArrow);
         modal.appendChild(nextArrow);
+        modal.appendChild(imageSubtitle);
         modal.appendChild(imageCounter);
         modal.appendChild(closeButton);
         
