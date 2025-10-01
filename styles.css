@@ -289,7 +289,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 4rem;
-    align-items: center;
+    align-items: start;
     margin-top: 3rem;
 }
 
@@ -1501,3 +1501,27 @@ html {
     }
 }
 
+/* --- CORRECTED STYLES FOR WORKSHOP DETAILS --- */
+
+/* 1. Style the subtitles on the left (Phase 1, etc.) */
+.phase-subtitle {
+  font-weight: bold;
+  font-size: 1.2em; /* Matches the size of "2-Day Immersive..." */
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* 2. Indent the bullet points on the left */
+.integration-list {
+  margin-top: 15px;
+  padding-left: 25px;
+}
+
+/* 3. THIS IS THE KEY: Make the left bullets LARGER to match the right bullets */
+.integration-list li {
+  font-size: 1.1em; /* This increases the font size to match the date bullets */
+  margin-bottom: 5px; /* Adds a little space between bullet points */
+}
+
+/* --- END OF CORRECTED STYLES --- */
