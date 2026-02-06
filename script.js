@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const monthName = dateMatch[1];
             const day = parseInt(dateMatch[2]);
-            const currentYear = 2025; // As specified in requirements
+            const currentYear = 2026; // As specified in requirements
 
             // Create deadline date object (end of day)
             const deadlineDate = new Date(currentYear, getMonthNumber(monthName), day, 23, 59, 59, 999);
