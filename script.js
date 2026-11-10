@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const pricingRows = document.querySelectorAll(".group-pricing-table tbody tr");
     pricingRows.forEach(row => {
         row.addEventListener("mouseenter", function() {
-            this.style.backgroundColor = "#EAF1FB";
+            this.style.backgroundColor = "#e3f2fd";
         });
         
         row.addEventListener("mouseleave", function() {

@@ -137,7 +137,7 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.7) brightness(0.97); /* calmer blue */
+    filter: saturate(0.78) brightness(1.12) contrast(1.02); /* calmer, lighter blue */
 }
 
 .hero-overlay {
@@ -246,7 +246,7 @@ p {
 }
 
 .tools-card {
-    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); /* original bright blue kept for this box */
+    background: linear-gradient(135deg, #1F4FA3 0%, #3F78D0 100%); /* Primary Blue gradient */
     color: white;
 }
 
@@ -327,7 +327,7 @@ p {
 }
 
 .acknowledgment {
-    background-color: #EAF1FB;
+    background-color: #f0f4f8;
     padding: 2.5rem;
     border-radius: 12px;
     margin-top: 3rem;
@@ -403,7 +403,7 @@ p {
 }
 
 .dates-placeholder {
-    background-color: #EAF1FB;
+    background-color: #f0f4f8;
     padding: 2rem;
     border-radius: 10px;
     border: 1px solid #e0e0e0;
@@ -510,7 +510,7 @@ p {
 
 .group-pricing-table {
     margin-top: 3rem;
-    background-color: #EAF1FB;
+    background-color: #f0f4f8;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
