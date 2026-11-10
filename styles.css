@@ -250,6 +250,10 @@ p {
     color: white;
 }
 
+.tools-card h3 {
+    color: #d1e0fc; /* same light blue as the name box title */
+}
+
 .tools-list {
     list-style: none;
     margin-top: 1.5rem;
