@@ -115,26 +115,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
-            // Extract deadline text and parse date
-            const deadlineText = deadlineElement.textContent || deadlineElement.innerText;
-            console.log("Deadline text found:", deadlineText);
-
-            // Extract the date from text like "Early bird pricing ends September 19th!"
-            const dateMatch = deadlineText.match(/([A-Za-z]+)\s+(\d{1,2})(st|nd|rd|th)/);
-            if (!dateMatch) {
-                console.error("Could not parse deadline date from text:", deadlineText);
-                return;
-            }
-
-            const monthName = dateMatch[1];
-            const day = parseInt(dateMatch[2]);
-            const currentYear = 2026; // As specified in requirements
-
-            // Create deadline date object (end of day)
-            const deadlineDate = new Date(currentYear, getMonthNumber(monthName), day, 23, 59, 59, 999);
-            
-            if (isNaN(deadlineDate.getTime())) {
-                console.error("Invalid deadline date created from:", monthName, day, currentYear);
+            // Early bird deadline: read from data-ends="YYYY-MM-DD" (preferred), else from the notice text
+            const deadlineDate = getEarlyBirdDeadline(deadlineElement);
+            if (!deadlineDate) {
+                console.error("Could not determine the early bird deadline from:", deadlineElement.textContent);
                 return;
             }
 
@@ -164,6 +148,53 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Reads the early bird deadline. Preferred: data-ends="YYYY-MM-DD" on the .early-bird-notice element.
+    // Fallback: a date written in the text like "October 19th" (current year, or next year if more than 6 months in the past).
+    function getEarlyBirdDeadline(el) {
+        const attr = el.getAttribute('data-ends');
+        if (attr && /^\d{4}-\d{2}-\d{2}$/.test(attr)) {
+            const p = attr.split('-');
+            return new Date(parseInt(p[0]), parseInt(p[1]) - 1, parseInt(p[2]), 23, 59, 59, 999);
+        }
+        const m = (el.textContent || '').match(/([A-Za-z]+)\s+(\d{1,2})(st|nd|rd|th)/);
+        if (!m) return null;
+        const monthNumber = getMonthNumber(m[1]);
+        if (monthNumber === undefined) return null;
+        const now = new Date();
+        let d = new Date(now.getFullYear(), monthNumber, parseInt(m[2]), 23, 59, 59, 999);
+        if (now - d > 180 * 24 * 3600 * 1000) d = new Date(now.getFullYear() + 1, monthNumber, parseInt(m[2]), 23, 59, 59, 999);
+        return d;
+    }
+
+    // Shows or hides everything about the early bird by itself, depending on the deadline date
+    function applyEarlyBirdVisibility() {
+        try {
+            const notice = document.querySelector('.early-bird-notice');
+            const deadline = notice ? getEarlyBirdDeadline(notice) : null;
+            const active = !!deadline && new Date() <= deadline;
+            const grid = document.querySelector('.pricing-grid');
+            if (grid) {
+                grid.style.gridTemplateColumns = active ? '' : 'minmax(0, 420px)';
+                grid.style.justifyContent = active ? '' : 'center';
+            }
+            if (notice) {
+                notice.style.display = active ? '' : 'none';
+                if (active) {
+                    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+                    const day = deadline.getDate();
+                    const ord = (day % 10 === 1 && day !== 11) ? 'st' : (day % 10 === 2 && day !== 12) ? 'nd' : (day % 10 === 3 && day !== 13) ? 'rd' : 'th';
+                    const txt = document.getElementById('early-bird-text');
+                    if (txt) txt.textContent = 'Early bird pricing ends ' + months[deadline.getMonth()] + ' ' + day + ord + '!';
+                }
+            }
+            document.querySelectorAll('.early-bird-card').forEach(function (c) { c.style.display = active ? '' : 'none'; });
+            document.querySelectorAll('.eb-on').forEach(function (c) { c.style.display = active ? '' : 'none'; });
+            document.querySelectorAll('.eb-off').forEach(function (c) { c.style.display = active ? 'none' : ''; });
+        } catch (error) {
+            console.error("Error applying early bird visibility:", error);
+        }
+    }
+
     // Helper function to convert month name to number
     function getMonthNumber(monthName) {
         const months = {
@@ -175,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialize dynamic Stripe link setup
     setupDynamicStripeLink();
+    applyEarlyBirdVisibility();
 
     // Intersection Observer for animations
     const observerOptions = {
@@ -231,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function() {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: #2563EB; /* Primary Blue */
+        background-color: #1F4FA3; /* Primary Blue */
         color: white;
         border: none;
         border-radius: 50%;
@@ -242,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function() {
         opacity: 0;
         transition: opacity 0.3s ease;
         z-index: 1000;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 4px 12px rgba(31, 79, 163, 0.3);
     `;
 
     document.body.appendChild(scrollToTopButton);
@@ -279,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const pricingRows = document.querySelectorAll(".group-pricing-table tbody tr");
     pricingRows.forEach(row => {
         row.addEventListener("mouseenter", function() {
-            this.style.backgroundColor = "#e3f2fd";
+            this.style.backgroundColor = "#EAF1FB";
         });
         
         row.addEventListener("mouseleave", function() {

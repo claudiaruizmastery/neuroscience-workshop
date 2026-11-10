@@ -33,7 +33,7 @@ h1 {
 
 h2 {
     font-size: 2.5rem; /* Larger for section titles */
-    color: #2563EB; /* Primary Blue */
+    color: #1F4FA3; /* Primary Blue */
     text-align: center;
     margin-bottom: 2.5rem;
 }
@@ -45,7 +45,7 @@ h3 {
 
 h4 {
     font-size: 1.4rem;
-    color: #2563EB;
+    color: #1F4FA3;
 }
 
 p {
@@ -82,13 +82,13 @@ p {
 }
 
 .btn-secondary {
-    background-color: #1E40AF; /* Darker blue for secondary CTA */
+    background-color: #173F82; /* Darker blue for secondary CTA */
     color: white;
-    border-color: #1E40AF;
+    border-color: #173F82;
 }
 
 .btn-secondary:hover {
-    background-color: #1E3A8A;
+    background-color: #12306A;
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(30, 64, 175, 0.4);
@@ -245,7 +245,7 @@ p {
 }
 
 .tools-card {
-    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); /* Primary Blue gradient */
+    background: linear-gradient(135deg, #1F4FA3 0%, #3F78D0 100%); /* Primary Blue gradient */
     color: white;
 }
 
@@ -302,13 +302,13 @@ p {
     height: 280px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #2563EB; /* Primary Blue border */
+    border: 5px solid #1F4FA3; /* Primary Blue border */
     margin-bottom: 1.5rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .credentials {
-    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #1F4FA3 0%, #3F78D0 100%);
     color: white;
     padding: 1.5rem;
     border-radius: 10px;
@@ -326,11 +326,11 @@ p {
 }
 
 .acknowledgment {
-    background-color: #f0f4f8;
+    background-color: #EAF1FB;
     padding: 2.5rem;
     border-radius: 12px;
     margin-top: 3rem;
-    border-left: 6px solid #2563EB; /* Primary Blue border */
+    border-left: 6px solid #1F4FA3; /* Primary Blue border */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -344,13 +344,13 @@ p {
 
 .acknowledgment cite {
     font-weight: 700;
-    color: #2563EB;
+    color: #1F4FA3;
 }
 
 /* CTA Section (General) */
 .cta-section {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); /* Primary Blue gradient */
+    background: linear-gradient(135deg, #1F4FA3 0%, #3F78D0 100%); /* Primary Blue gradient */
     color: white;
     text-align: center;
 }
@@ -402,7 +402,7 @@ p {
 }
 
 .dates-placeholder {
-    background-color: #f0f4f8;
+    background-color: #EAF1FB;
     padding: 2rem;
     border-radius: 10px;
     border: 1px solid #e0e0e0;
@@ -481,7 +481,7 @@ p {
 .pricing-card h4 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: #2563EB;
+    color: #1F4FA3;
 }
 
 .pricing-card .price {
@@ -498,18 +498,18 @@ p {
 
 .btn-outline {
     background-color: transparent;
-    color: #2563EB;
-    border: 2px solid #2563EB;
+    color: #1F4FA3;
+    border: 2px solid #1F4FA3;
 }
 
 .btn-outline:hover {
-    background-color: #2563EB;
+    background-color: #1F4FA3;
     color: white;
 }
 
 .group-pricing-table {
     margin-top: 3rem;
-    background-color: #f0f4f8;
+    background-color: #EAF1FB;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -518,7 +518,7 @@ p {
 .group-pricing-table h4 {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #2563EB;
+    color: #1F4FA3;
 }
 
 .group-pricing-table table {
@@ -533,7 +533,7 @@ p {
 }
 
 .group-pricing-table th {
-    background-color: #2563EB;
+    background-color: #1F4FA3;
     color: white;
 }
 
@@ -568,7 +568,7 @@ p {
 }
 
 .payment-card.preferred {
-    border-top-color: #2563EB; /* Primary Blue */
+    border-top-color: #1F4FA3; /* Primary Blue */
 }
 
 .payment-card.alternative {
@@ -588,7 +588,7 @@ p {
 }
 
 .badge {
-    background-color: #2563EB;
+    background-color: #1F4FA3;
     color: white;
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
@@ -604,7 +604,7 @@ p {
 .phone-number {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #2563EB;
+    color: #1F4FA3;
 }
 
 /* Gallery Section */
@@ -665,7 +665,7 @@ p {
     padding: 4rem;
     border-radius: 12px;
     margin-top: 1.5rem;
-    border: 2px dashed #2563EB;
+    border: 2px dashed #1F4FA3;
     font-size: 1.2rem;
     color: #555;
 }
@@ -687,7 +687,7 @@ p {
     background: white;
     padding: 2.5rem;
     border-radius: 12px;
-    border-left: 6px solid #2563EB; /* Primary Blue */
+    border-left: 6px solid #1F4FA3; /* Primary Blue */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -698,7 +698,7 @@ p {
 }
 
 .testimonial-card.featured {
-    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #1F4FA3 0%, #3F78D0 100%);
     color: white;
     border-left: 6px solid white;
     grid-column: span 2;
@@ -818,13 +818,13 @@ p {
     font-size: 1.2rem;
     padding: 16px 32px;
     min-width: 250px;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(31, 79, 163, 0.3);
     transition: all 0.3s ease;
 }
 
 .enroll-section .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 6px 20px rgba(31, 79, 163, 0.4);
 }
 
 /* Smooth scrolling for anchor links */
@@ -1077,7 +1077,7 @@ html {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(37, 99, 235, 0.8);
+    background: rgba(31, 79, 163, 0.8);
     color: white;
     border: none;
     width: 40px;
@@ -1094,7 +1094,7 @@ html {
 }
 
 .carousel-btn:hover {
-    background: rgba(37, 99, 235, 1);
+    background: rgba(31, 79, 163, 1);
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -1127,12 +1127,12 @@ html {
 }
 
 .dot.active {
-    background: rgba(37, 99, 235, 0.9);
+    background: rgba(31, 79, 163, 0.9);
     transform: scale(1.2);
 }
 
 .dot:hover {
-    background: rgba(37, 99, 235, 0.7);
+    background: rgba(31, 79, 163, 0.7);
 }
 
 /* Mobile Responsive Carousel */
@@ -1430,7 +1430,7 @@ html {
 }
 
 .video-section h2 {
-    color: #2563EB;
+    color: #1F4FA3;
     text-align: center;
     margin-bottom: 3rem;
     font-size: 2.5rem;
